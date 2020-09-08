@@ -1,5 +1,5 @@
 PACKAGE_NAME?=github.com/projectcalico/node
-GO_BUILD_VER?=v0.40
+GO_BUILD_VER?=v0.45
 
 # This needs to be evaluated before the common makefile is included.
 # This var contains some default values that the common makefile may append to.
@@ -18,7 +18,7 @@ Makefile.common: Makefile.common.$(MAKE_BRANCH)
 Makefile.common.$(MAKE_BRANCH):
 	# Clean up any files downloaded from other branches so they don't accumulate.
 	rm -f Makefile.common.*
-	curl -k --fail $(MAKE_REPO)/Makefile.common -o "$@"
+	curl --fail $(MAKE_REPO)/Makefile.common -o "$@"
 
 # Build mounts for running in "local build" mode. This allows an easy build using local development code,
 # assuming that there is a local checkout of libcalico in the same directory as this repo.
@@ -53,8 +53,8 @@ FELIX_GPL_SOURCE=filesystem/included-source/felix-ebpf-gpl.tar.gz
 INCLUDED_SOURCE=$(BIRD_SOURCE) $(FELIX_GPL_SOURCE)
 
 # Versions and locations of dependencies used in tests.
-CALICOCTL_VER?=v3.14.1
-CNI_VER?=v3.14.1
+CALICOCTL_VER?=master
+CNI_VER?=master
 TEST_CONTAINER_NAME_VER?=latest
 CTL_CONTAINER_NAME?=calico/ctl:$(CALICOCTL_VER)-$(ARCH)
 TEST_CONTAINER_NAME?=calico/test:$(TEST_CONTAINER_NAME_VER)-$(ARCH)

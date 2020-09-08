@@ -127,7 +127,6 @@ RUN yum install -y libpcap libmnl libnfnetlink libnftnl libnetfilter_conntrack \
 # This must be the first RUN command in this file!
 # we only need this for the intermediate "base" image, so we can run all the apk and other commands
 # when running on a kernel >= 4.8, this will become less relevant
-#COPY --from=qemu /usr/bin/qemu-aarch64-static /usr/bin/
 
 # Copy our bird binaries in
 COPY --from=bird /bird* /bin/
